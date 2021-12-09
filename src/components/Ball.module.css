@@ -1,0 +1,49 @@
+.ball {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+}
+.germ {
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+}
+
+.green {
+  background-color: #22df5a;
+  border: 1px solid #22df5a;
+}
+
+.yellow {
+  background-color: #ebe71b;
+  border: 1px solid #ebe71b;
+}
+
+.blue {
+  background-color: #0a46b6;
+  border: 1px solid #0a46b6;
+}
+
+.azure {
+  background-color: #66e2eb;
+  border: 1px solid #66e2eb;
+}
+
+.purple {
+  background-color: #8b23bb;
+  border: 1px solid #8b23bb;
+}
+
+.red {
+  background-color: #cc1d1d;
+  border: 1px solid #cc1d1d;
+}
+
+.brown {
+  background-color: #631212;
+  border: 1px solid #631212;
+}
+
+.active {
+  border: 5px double #fff;
+}

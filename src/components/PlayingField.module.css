@@ -1,0 +1,10 @@
+.field {
+  margin: 20px auto;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 510px;
+  height: 510px;
+  border: 1px solid orangered;
+  background-color: #ebdcd0;
+}
