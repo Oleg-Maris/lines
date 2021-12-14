@@ -7,7 +7,7 @@ const PlayingField = (props) => {
   return (
     <div className={styles.field}>
       {props.cells.map((item) => (
-        <Cell key={item.id}>
+        <Cell handleCellClick={() => props.handleCellClick(item)} key={item.id}>
           {item.color && (
             <Ball
               color={item.color}
