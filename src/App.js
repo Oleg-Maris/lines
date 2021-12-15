@@ -15,23 +15,24 @@ function App() {
 
   const colors = ["green", "yellow", "blue", "azure", "purple", "red", "brown"];
 
-  const startGame = () => {
-    const idArray = [];
-    let n;
-    const fillCells = (howMany, small) => {
-      for (let i = 0; i < howMany; i++) {
-        let m = randomInteger(0, 6);
-        do n = randomInteger(0, 80);
-        while (idArray.includes(n));
-        idArray.push(n);
-        cellsInitial[n].color = colors[m];
-        if (small) {
-          cellsInitial[n].germ = true;
-        }
+  const fillCells = (array, howMany, small) => {
+    for (let i = 0; i < howMany; i++) {
+      let m = randomInteger(0, 6);
+      let n;
+      const emptyCells = array.filter((cell) => !cell.color);
+      if (emptyCells.length < howMany) break;
+      do n = randomInteger(0, 80);
+      while (array[n].color);
+      array[n].color = colors[m];
+      if (small) {
+        array[n].germ = true;
       }
-    };
-    fillCells(7);
-    fillCells(3, true);
+    }
+  };
+
+  const startGame = () => {
+    fillCells(cellsInitial, 7);
+    fillCells(cellsInitial, 3, true);
   };
   startGame();
 
@@ -81,6 +82,7 @@ function App() {
     });
     if (delCellId) {
       tempArray[delCellId - 1].color = null;
+      fillCells(tempArray, 3, true);
     }
 
     setCells(tempArray);
