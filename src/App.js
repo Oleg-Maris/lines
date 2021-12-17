@@ -144,6 +144,23 @@ function App() {
     return unique;
   };
 
+  const deleteRows = (array, arrayToDelete) => {
+    return array.map((cell) => {
+      if (arrayToDelete.includes(cell.id)) {
+        return {
+          ...cell,
+          color: null,
+        };
+      }
+      return { ...cell };
+    });
+  };
+  const raise = (array) => {
+    for (let i = 0; i <= 80; i++) {
+      array[i].germ = false;
+    }
+  };
+
   const handleCellClick = (item) => {
     let delCellId;
     const tempArray = cells.map((cell) => {
@@ -169,19 +186,7 @@ function App() {
           germ: false,
         };
       }
-      if (
-        (isCharged && cell.id !== item.id && !item.color && cell.germ) ||
-        (isCharged &&
-          cell.id !== item.id &&
-          item.color &&
-          item.germ &&
-          cell.germ)
-      ) {
-        return {
-          ...cell,
-          germ: false,
-        };
-      }
+
       return {
         ...cell,
         isActive: false,
@@ -189,13 +194,16 @@ function App() {
     });
     if (delCellId) {
       tempArray[delCellId - 1].color = null;
+    }
+
+    const cellsToClean = checkFiveInRow(tempArray);
+
+    if (delCellId && cellsToClean && cellsToClean.length < 5) {
+      raise(tempArray);
       fillCells(tempArray, 3, true);
     }
 
-    setCells(tempArray);
-
-    const cellsToClean = checkFiveInRow(tempArray);
-    console.log(cellsToClean);
+    setCells(deleteRows(tempArray, cellsToClean));
   };
 
   return (
